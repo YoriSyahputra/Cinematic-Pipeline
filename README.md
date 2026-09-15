@@ -235,8 +235,8 @@ uv run python -m cinematic_pipeline.cli \
 **Example output:**
 
 ```
-╭──────────────────────── Cinematic Scene Pipeline ─────────────────────────╮
-│  Premise: "A retired detective takes one last case in a neon-lit city"    │
+╭──────────────────────── Cinematic Scene Pipeline ───────────────────────╮
+│  Premise: "A retired detective takes one last case in a neon-lit city"  │
 ╰─────────────────────────────────────────────────────────────────────────╯
 
 ⠋ Decomposing premise via Scene Director (gemini-2.0-flash)...
@@ -247,14 +247,14 @@ uv run python -m cinematic_pipeline.cli \
 
                        Storyboard Render Results
 ┏━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━┓
-┃ Scene ┃ Action Description                 ┃ Status  ┃ Latency   ┃
-┡━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━┩
-│   1   │ Detective enters a rain-slicked     │ ✓ done  │  1.42s    │
-│       │ alley beneath flickering neon signs │         │           │
-│   2   │ A tense standoff in a dim noodle    │ ✓ done  │  2.14s    │
-│       │ bar, steam rising between them      │         │           │
-│   3   │ Detective walks away as dawn breaks │ ✓ done  │  1.87s    │
-│       │ over the city skyline               │         │           │
+┃ Scene ┃ Action Description                ┃ Status  ┃ Latency   ┃
+┡━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━┓
+│   1   │ Detective enters a rain-slicked    │ ✓ done  │  1.42s    │
+│       │ alley beneath flickering neon signs│         │           │
+│   2   │ A tense standoff in a dim noodle   │ ✓ done  │  2.14s    │
+│       │ bar, steam rising between them     │         │           │
+│   3   │ Detective walks away as dawn breaks│ ✓ done  │  1.87s    │
+│       │ over the city skyline              │         │           │
 └───────┴────────────────────────────────────┴─────────┴───────────┘
 
 Compiled prompt (Scene 1):
