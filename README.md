@@ -47,7 +47,7 @@ The LLM proposes the _story_. Pydantic-validated Python guarantees the _consiste
 ┌───────────────────┐         ┌──────────────────────────┐
 │  Rich Spinner /   │ ◄───────┤  Scene Director          │
 │  Progress UI      │         │  core/director.py        │
-└───────────────────┘         │  gemini-2.0-flash        │
+└───────────────────┘         │  gemini-3.6-flash        │
                               │  + tenacity retry wrapper│
                               └───────────┬──────────────┘
                                           │ raw structured JSON
