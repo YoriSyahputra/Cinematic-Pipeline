@@ -16,21 +16,17 @@ class PipelineOrchestrator:
         """
         print(f"Orchestrator Memulai pipeline untuk premis: '{premise}'")
         
-        # Langkah 1: Buat storyboard via LLM
         storyboard: StoryboardPlan = await self.director.generate_storyboard(premise)
         print(f" Orchestrator Storyboard berhasil dibuat dengan gaya: {storyboard.art_style_preset}")
         
-        # Langkah 2: Buat list async tasks untuk semua scene secara bersamaan
         print(f" Orchestrator Mengirim 3 scene ke Image Generation Engine secara paralel...")
         tasks = [
             self.image_generator.generate_scene_image(scene) 
             for scene in storyboard.scenes
         ]
         
-        # Langkah 3: Eksekusi konkuren menggunakan asyncio.gather
         image_urls = await asyncio.gather(*tasks)
         
-        # Langkah 4: Gabungkan kembali scene dan URL hasilnya menggunakan zip()
         results = []
         for scene, url in zip(storyboard.scenes, image_urls):
             results.append({

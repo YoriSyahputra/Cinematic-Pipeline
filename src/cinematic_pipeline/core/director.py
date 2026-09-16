@@ -22,11 +22,10 @@ class SceneDirector:
     def __init__(self) -> None:
         self.client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
-    # Menambahkan decorator tenacity untuk retry otomatis jika terjadi error 503 / server unavailable
     @retry(
-        stop=stop_after_attempt(5), # Naikkan jadi 5 kali percobaan
-        wait=wait_exponential(multiplier=2, min=4, max=20), # Jeda lebih panjang (4s, 8s, 16s...)
-        retry=retry_if_exception_type(Exception), # Coba ulang untuk segala exception server
+        stop=stop_after_attempt(5),      
+        wait=wait_exponential(multiplier=2, min=4, max=20),
+        retry=retry_if_exception_type(Exception), 
         reraise=True    )
     async def generate_storyboard(self, premise: str) -> StoryboardPlan:
         prompt = f"Story Premise: {premise}"

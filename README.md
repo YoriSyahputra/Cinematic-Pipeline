@@ -256,7 +256,7 @@ uv run python -m cinematic_pipeline.cli \
 │   3   │ Detective walks away as dawn breaks│ ✓ done  │  1.87s    │
 │       │ over the city skyline              │         │           │
 └───────┴────────────────────────────────────┴─────────┴───────────┘
-
+  
 Compiled prompt (Scene 1):
 "weathered angular jawline, deep-set grey eyes | tan trench coat,
 scuffed leather gloves | scar above left brow | detective enters a

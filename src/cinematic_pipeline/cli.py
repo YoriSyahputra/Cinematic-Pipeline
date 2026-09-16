@@ -32,7 +32,6 @@ def generate(
     with console.status("[bold green]Sedang memproses storyboard & adegan secara paralel...", spinner="dots"):
         result = asyncio.run(_execute())
 
-    # Tampilkan Ringkasan Karakter & Gaya Visual
     char_info = (
         f"[bold yellow]Name:[/bold yellow] {result['character_anchor']['name']}\n"
         f"[bold yellow]Features:[/bold yellow] {result['character_anchor']['visual_features']}\n"
@@ -43,7 +42,6 @@ def generate(
         Panel(result["art_style_preset"], title="🎨 Art Style Preset", border_style="blue")
     )
 
-    # Tampilkan Tabel Hasil Render Setiap Scene
     table = Table(title="🎞️ Hasil Generasi Adegan", show_lines=True)
     table.add_column("Scene", justify="center", style="bold cyan", width=8)
     table.add_column("Compiled Prompt", style="dim", ratio=3)
