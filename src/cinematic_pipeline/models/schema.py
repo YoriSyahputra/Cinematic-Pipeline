@@ -2,47 +2,47 @@ from pydantic import BaseModel, Field
 
 
 class CharacterAnchor(BaseModel):
-    name: str = Field(description="Nama karakter utama atau identifier unik")
+    name: str = Field(description="Main character name or unique identifier")
     visual_features: str = Field(
-        description="Fitur fisik permanen: usia perkiraan, bentuk wajah, warna & gaya rambut, ekspresi khas"
+        description="Permanent physical features: estimated age, face shape, hair color & style, signature expression"
     )
     wardrobe: str = Field(
-        description="Pakaian detail, tekstur bahan, aksesori statis yang wajib ada di setiap shot"
+        description="Detailed clothing, fabric texture, static accessories required in every shot"
     )
 
 
 class ScenePrompt(BaseModel):
-    scene_number: int = Field(description="Urutan adegan (1, 2, atau 3)")
+    scene_number: int = Field(description="Sequence number of the scene (1, 2, or 3)")
     camera_shot: str = Field(
-        description="Teknik sinematografi, misal: 'Extreme Wide Shot', 'Dutch Angle Close-Up', 'Tracking Shot'"
+        description="Cinematography technique, e.g., 'Extreme Wide Shot', 'Dutch Angle Close-Up', 'Tracking Shot'"
     )
     action: str = Field(
-        description="Aktivitas spesifik karakter dan dinamika latar tempat pada shot ini"
+        description="Specific character activity and background environment dynamics in this shot"
     )
     lighting_and_atmosphere: str = Field(
-        description="Pencahayaan dan atmosfer, misal: 'Volumetric god rays through haze', 'Neon reflections on wet pavement'"
+        description="Lighting and atmosphere, e.g., 'Volumetric god rays through haze', 'Neon reflections on wet pavement'"
     )
     final_compiled_prompt: str = Field(
         default="",
-        description="Prompt akhir gabungan yang akan langsung diumpankan ke model gambar"
+        description="Final combined prompt to be fed directly into the image generation model"
     )
 
 
 class StoryboardPlan(BaseModel):
     art_style_preset: str = Field(
-        description="Token gaya visual global, misal: '35mm anamorphic photography, Kodak Portra 400, grainy texture'"
+        description="Global visual style tokens, e.g., '35mm anamorphic photography, Kodak Portra 400, grainy texture'"
     )
     character_anchor: CharacterAnchor
     scenes: list[ScenePrompt] = Field(
         min_length=3,
         max_length=3,
-        description="Tepat 3 adegan sekuensial yang saling berkesinambungan"
+        description="Exactly 3 sequential, mutually consistent scenes"
     )
 
     def compile_prompts(self) -> None:
         """
-        Menyatukan anchor visual, style preset, dan aksi tiap scene
-        untuk memastikan determinisme konsistensi karakter.
+        Merge visual anchors, style presets, and actions for each scene
+        to ensure deterministic character consistency.
         """
         for scene in self.scenes:
             scene.final_compiled_prompt = (
