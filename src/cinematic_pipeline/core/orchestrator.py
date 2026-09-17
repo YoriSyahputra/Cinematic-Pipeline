@@ -10,16 +10,16 @@ class PipelineOrchestrator:
 
     async def run_pipeline(self, premise: str) -> dict:
         """
-        Menjalankan end-to-end pipeline:
-        1. LLM Director mengurai premis menjadi 3 scene terstruktur & konsisten.
-        2. Async Generator merender ketiga scene secara paralel (konkuren).
+        Executing the end-to-end pipeline:
+        1. The LLM Director breaks down the premise into three structured and consistent scenes.
+        2. The Async Generator renders the three scenes in parallel (concurrently).
         """
-        print(f"Orchestrator Memulai pipeline untuk premis: '{premise}'")
+        print(f" Orchestrator starts the pipeline for the premises:'{premise}'")
         
         storyboard: StoryboardPlan = await self.director.generate_storyboard(premise)
-        print(f" Orchestrator Storyboard berhasil dibuat dengan gaya: {storyboard.art_style_preset}")
+        print(f" The Orchestrator Storyboard was successfully created with the style:{storyboard.art_style_preset}")
         
-        print(f" Orchestrator Mengirim 3 scene ke Image Generation Engine secara paralel...")
+        print(f"The Orchestrator sends three scenes to the Image Generation Engine in parallel...")
         tasks = [
             self.image_generator.generate_scene_image(scene) 
             for scene in storyboard.scenes
@@ -35,7 +35,7 @@ class PipelineOrchestrator:
                 "image_url": url
             })
             
-        print(f" Orchestrator Seluruh proses pipeline selesai!")
+        print(f" Orchestrator: The entire pipeline process is complete!")
         
         return {
             "art_style_preset": storyboard.art_style_preset,
