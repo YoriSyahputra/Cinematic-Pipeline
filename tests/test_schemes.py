@@ -37,7 +37,7 @@ def test_storyboard_plan_compile_prompts():
 
     plan.compile_prompts()
 
-    # Verifikasi injeksi deterministik token karakter dan style ke seluruh scene
+    # Verify deterministic injection of character tokens and style across all scenes
     for scene in plan.scenes:
         assert "35mm anamorphic neo-noir" in scene.final_compiled_prompt
         assert "Arthur Vance" in scene.final_compiled_prompt
@@ -50,7 +50,7 @@ def test_storyboard_plan_strictly_three_scenes():
         visual_features="Features",
         wardrobe="Wardrobe",
     )
-    # Kurang dari 3 scene harus memicu ValidationError
+    # Less than 3 scenes must trigger a ValidationError
     invalid_scenes = [
         ScenePrompt(
             scene_number=1,
