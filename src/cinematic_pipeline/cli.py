@@ -12,10 +12,10 @@ console = Console()
 
 @app.command()
 def generate(
-    premise: str = typer.Argument(..., help="Premis cerita yang ingin divisualisasikan"),
+    premise: str = typer.Argument(..., help="The story premise to be visualized"),
 ) -> None:
     """
-    Generate storyboard 3 adegan sinematik terstruktur secara konkuren.
+    Generate storyboard of 3 concurrently structured cinematic scenes.
     """
     console.print(
         Panel.fit(
@@ -37,12 +37,12 @@ def generate(
         f"[bold yellow]Features:[/bold yellow] {result['character_anchor']['visual_features']}\n"
         f"[bold yellow]Wardrobe:[/bold yellow] {result['character_anchor']['wardrobe']}"
     )
-    console.print(Panel(char_info, title="👤 Anchor Karakter", border_style="yellow"))
+    console.print(Panel(char_info, title="Anchor Karakter", border_style="yellow"))
     console.print(
-        Panel(result["art_style_preset"], title="🎨 Art Style Preset", border_style="blue")
+        Panel(result["art_style_preset"], title="Art Style Preset", border_style="blue")
     )
 
-    table = Table(title="🎞️ Hasil Generasi Adegan", show_lines=True)
+    table = Table(title="Generate Result Scene ", show_lines=True)
     table.add_column("Scene", justify="center", style="bold cyan", width=8)
     table.add_column("Compiled Prompt", style="dim", ratio=3)
     table.add_column("Rendered Image URL", style="green", ratio=2)
